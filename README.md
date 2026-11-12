@@ -1,75 +1,57 @@
-# MailShield — Phishing Email Detector
+# MAILSHIELD – Phishing Email Detection
 
-MailShield is a student machine-learning project that estimates whether an email message contains phishing patterns. It includes a clean Streamlit interface, a command-line option, and a reproducible training script.
+## About the Project
+MAILSHIELD is a machine learning-based project that detects phishing emails and separates them from safe emails. It analyses email text, suspicious keywords and URLs to identify possible threats.
 
 ## Features
+- Detects phishing and legitimate emails.
+- Analyses email text and URLs.
+- Uses Machine Learning with Scikit-learn.
+- Displays predictions as **Phishing** or **Safe**.
+- Shows model accuracy and confusion matrix.
+- Simple and user-friendly Streamlit interface.
 
-- Paste an email into the web interface and review its predicted phishing score.
-- Extract basic URL signals such as IP-based hosts, URL shorteners, unusual top-level domains and plain HTTP links.
-- Combine TF-IDF text features with numeric message and URL features.
-- Train a Logistic Regression classifier and evaluate it on a held-out test set.
-- Run a prediction from the terminal or from a UTF-8 text file.
+## Technologies Used
+- Python
+- Scikit-learn
+- Pandas
+- NumPy
+- Streamlit
+- TF-IDF
 
-## Project structure
+## How to Run
 
-```text
-phishing-email-detector/
-├── app.py                 # Streamlit web interface
-├── features.py            # Text and URL feature extraction
-├── train.py               # Model training and evaluation
-├── predict.py             # Command-line prediction
-├── make_sample_data.py    # Creates a clearly synthetic practice dataset
-├── data/
-│   └── emails.csv
-├── models/                # Trained model is saved here
-└── requirements.txt
-```
-
-## Run on Windows
-
-Open VS Code terminal in the project folder and run:
+1. Clone the repository:
 
 ```bash
-py -m venv .venv
-.venv\Scripts\activate
-py -m pip install -r requirements.txt
-py train.py
-py -m streamlit run app.py
+git clone https://github.com/Raghavendra1661/MAILSHEILD.git
 ```
 
-Streamlit will print a local address, usually `http://localhost:8501`.
-
-If the sample CSV is missing, create it first:
+2. Open the project folder:
 
 ```bash
-py make_sample_data.py
+cd MAILSHEILD
 ```
 
-## Command-line use
+3. Install the required libraries:
 
 ```bash
-py predict.py "Your account is locked. Verify at http://example.com"
-py predict.py --file suspicious_email.txt
+pip install -r requirements.txt
 ```
 
-## Dataset and evaluation note
-
-The included `data/emails.csv` is synthetic sample data created by `make_sample_data.py`. It is useful for checking that the application runs, but it is **not representative of real email traffic**. Scores measured on it must not be presented as real-world performance.
-
-For a meaningful evaluation, replace it with a properly labelled public dataset, check its licence, remove duplicates, inspect class balance and map its labels to `Phishing` and `Safe`. Then train again:
+4. Run the application:
 
 ```bash
-py train.py --data data/your_dataset.csv
+streamlit run app.py
 ```
 
-The training script recognises common text and label column names and stops if it encounters labels it does not understand.
+5. Open the local URL displayed in your terminal.
 
-## Limitations
+## Expected Outcome
+The system predicts whether an email is phishing or safe based on its text and URL features. It also displays model performance through accuracy and a confusion matrix.
 
-- Analyses pasted message text only; it does not inspect sender headers, SPF, DKIM or DMARC.
-- Does not open links or check them against a live blacklist.
-- A low score does not prove an email is safe, and a high score does not prove it is malicious.
-- The model is only as reliable as its training data and evaluation method.
-- English-focused sample data will not represent every language or phishing style.
+## Objective
+The main objective of MAILSHIELD is to help users identify suspicious emails and improve awareness of email-based cyber threats.
 
-Use MailShield as an educational demonstration, not as a replacement for an email security gateway or human review.
+## Author
+**Raghavendra**
